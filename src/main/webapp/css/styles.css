@@ -1,0 +1,547 @@
+html, body, div, span, applet, object, iframe, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, hr, button {
+	margin:0;
+	padding:0;
+	border:0;
+	outline:0;
+	font-size:100%;
+	vertical-align:baseline;
+	background:none;
+}
+
+table, caption, tbody, tfoot, thead, tr, th, td {
+	margin:0;
+	padding:5px;
+	border:1px;
+	font-size:100%;
+	vertical-align:baseline;
+}
+
+*.hf {
+	background:#373737;
+	color:#ffffff;
+}
+
+*.hf a {
+	color: #484854;
+	color: #484854;
+	hover:#ff00ff;
+	active:#0000ff; 
+}
+
+*.nohf a {
+	color:#5d5d5d !important;
+	visited:#5d5d5d !important;
+	hover:#5d5d5d !important;
+	active:#5d5d5d !important;
+	text-decoration:none;
+}
+
+ol, ul {
+	list-style:none;
+}
+h1, h2, h3, h4, h5, h6, li {
+	/* text-shadow: 0px 1px 1px rgba(153,152,152,0.5); */
+	line-height:150%;
+}
+blockquote, q {
+	quotes:none;
+}
+table {
+	border-collapse:collapse;
+	border-spacing:0;
+}
+input, textarea, button {
+	margin:0;
+	font-family:inherit;
+	font-size:1em;
+}
+html {
+	height:100%;
+}
+q:before, q:after {
+	content:"";
+}
+body {
+	font:12px/20px Arial, Helvetica, sans-serif;
+	height:100%;
+	color: #484854;
+}
+a {
+	color: #484854;
+	text-decoration:none;
+}
+
+a:hover {
+	text-decoration:underline;
+}
+
+#wrapper {
+	min-height:100%;
+	margin:0 auto;
+}
+
+* html #wrapper {
+	height:100%;
+}
+
+#main {
+	overflow:hidden;
+	/* padding-left: 15px; */
+	padding-left: 194px;
+	padding-right: 15px;
+	padding-bottom:145px;
+	border-bottom: 1px solid #a3abb1;
+}
+#mainNoMenu {
+	overflow:hidden;
+	padding-left: 15px;
+	padding-right: 15px;
+	padding-bottom:145px;
+	border-bottom: 1px solid #a3abb1;
+}
+
+/* Content Style */
+.content {
+	width:100%;
+	overflow:hidden;
+	margin-bottom:19px;
+}
+
+.content .con {
+	float:left;
+	width:100%;
+	margin-right:56px;
+	display:inline;
+}
+.content .con h2 {
+	/* text-transform:uppercase; */
+	font:bold 18px/18px Arial, Helvetica, sans-serif;
+	color:#090909;
+	padding:0 0 10px 28px;
+	border-bottom:6px solid #090909;
+	background:url(../images/arrow.gif) no-repeat 0 7px;
+	margin-bottom:16px;
+}
+
+.center {
+	text-align: center;
+}
+
+.centeredContent {
+	width: 100%;
+	text-align: center;
+}
+
+.width100Percent {
+	width: 100%;
+}
+
+.img-fulltext-left {
+	float:left;
+	margin-right: 20px;
+	margin-bottom: 20px;
+}
+/*End Content Style*/
+
+
+.problem {
+	color: red;
+}
+
+.block {
+	width:100%;
+	overflow:hidden;
+}
+.block h3 {
+	background:url(../images/small-arrow.gif) no-repeat 0 4px;
+	padding:0 0 21px 23px;
+	font:bold 12px/14px Arial, Helvetica, sans-serif;
+	color:#090909;
+	text-transform:uppercase;
+}
+.block .social {
+	float:right;
+	width:219px;
+	margin-left:82px;
+}
+.social ul {
+	width:100%;
+	overflow:hidden;
+}
+.social li {
+	float:left;
+	margin-right:14px;
+}
+.social li img {
+	display:block;
+}
+.block .text {
+	height:1%;
+	overflow:hidden;
+}
+#footer {
+	position:relative;
+	height:auto;
+	text-align: right;
+	padding-right: 100px;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	color: #484854;
+}
+
+.spacer {
+	width: 100%;
+}
+
+.px20 {
+	height: 20px;
+}
+
+.inplaceEditor {
+	width: 20px;
+}
+
+.topMenuContainer {
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+.trialId {
+	font-style: italic;
+}
+
+.actionColumn {
+	width: 150px;
+	text-align: center;
+}
+
+.controls {
+	text-align: right;
+}
+
+.hide {
+	display: none;
+}
+
+.spaceTop {
+	margin-top: 15px;
+}
+
+td.conflict {
+	background-color: yellow;
+}
+
+td.merged {
+	background-color: #CCFFCC;
+}
+
+td.clickableCell {
+	cursor: pointer;
+}
+
+.middle {
+	vertical-align: middle;
+}
+
+.middle tbody tr td {
+	vertical-align: middle;
+}
+
+.checkboxLeft {
+	float: left;
+	width: 220px;
+	height: 20px;
+}
+
+.deletedElement {
+	font-style: italic;
+	color: gray;
+}
+
+.optOut {
+	color: blue;
+}
+
+.ui-column-filter {
+	display: inline;
+	padding-left: 5px;
+}
+
+.ui-datatable .ui-column-filter {
+	width: 70px !important;
+}
+
+div.hideFilter div table thead tr th input.ui-column-filter {
+	display: none !important;
+}
+
+.ui-fileupload-content {
+	height: 150px !important;
+}
+
+#header {
+	min-height: 70px;
+}
+
+.poloPlastHeaderImage {
+	padding-right: 20px;
+	border-right: solid 7px #005292;
+	width: 152px;
+	height: 70px;
+	float: left;
+	background-image: url('../images/poloplast/topimg1.jpg');
+	background-repeat: no-repeat;
+}
+
+.poloPlastLogo {
+	background-image: url('../images/poloplast/logo_poloplast.jpg');
+	background-repeat: no-repeat;
+	background-position: center;
+	width: 200px;
+	height: 70px;
+	float: right;
+	position: absolute;
+	right: 100px;
+}
+
+.appVersion {
+	width: 200px;
+	position: relative;
+	vertical-align: bottom;
+	text-align: center;
+	text-decoration: none;
+	color: #484854;
+	font-size: 10px;
+	padding-top: 60px;
+}
+
+.navbar {
+	border-bottom: 1px solid #a3abb1;
+	width: 100%;
+	height: 90px;
+}
+	
+
+.poloplastButton {
+	background: #005292 -webkit-gradient(linear, left top, left bottom, from(rgba(255,255,255,0.8)), to(rgba(255,255,255,0))) !important;
+}
+
+.poloplastButton span.ui-button-text {
+	color: #efefef !important;
+	text-shadow: 0px 1px 0px rgba(125,125,125,0.7);
+}
+
+.poloplastMenuButton span.ui-button-text {
+	font-size: 1.2em;
+}
+
+.busyindicator {
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background-color: #000000;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";       /* IE 8 */
+	filter: alpha(opacity=50);  /* IE 5-7 */
+	-moz-opacity: 0.5;          /* Netscape */
+	-khtml-opacity: 0.5;        /* Safari 1.x */
+	opacity: 0.5;               /* Good browsers */
+	z-index: 10000;
+	display: none;
+}
+
+.busyindicator img.progress {
+	left: 50%;
+	top: 50%;
+	position: absolute;
+	width: 150px;
+	height: 150px;
+	margin-top: -75px;
+	margin-left: -75px;
+}
+
+.busyindicator div.message {
+	left: 50%;
+	top: 50%;
+	position: absolute;
+	width: 300px;
+	height: 180px;
+	margin-left: -150px;
+	margin-top: 120px;
+	text-align: center;
+	color: white;
+	font-weight: bold;
+	font-size: 1.5em;
+}
+
+.storey {
+	border-top: 1px solid #5d5d5d;
+}
+
+.storey:first-child {
+	border-top: 0px;
+}
+
+.storeyControls {
+	float: right;
+	padding-top: 5px;
+}
+
+storey:first-child.storeyControls {
+	padding-top: 0px;
+}
+
+.storeyTitle {
+	font-size: 1.2em;
+	min-height: 25px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+.floor {
+	min-width: 160px;
+	background-repeat: no-repeat;
+	padding-left: 165px;
+}
+.roof {
+	background-image: url('../images/building/roof.gif');
+	min-height: 120px;
+}
+.first {
+	background-image: url('../images/building/first.gif');
+	min-height: 57px;
+}
+.ground {
+	background-image: url('../images/building/ground.gif');
+	min-height: 72px;
+}
+.cellar {
+	background-image: url('../images/building/cellar.gif');
+	min-height: 61px;
+}
+
+.projectSummary {
+	text-align: right;
+	padding-left: 165px;
+	padding-right: 80px;
+	padding-top: 15px;
+	font-size: 1.2em;
+}
+
+.summaryArea {
+	display: inline-block;
+}
+
+.summaryVolume {
+	display: inline-block;
+}
+
+.summaryIntake {
+	display: inline-block;
+}
+
+.summaryOutlet {
+	display: inline-block;
+}
+
+.buildingPlan {
+	background-color: #ffffff;
+	padding: 5px;
+}
+
+.room {
+	border-top: 1px solid #838383;
+}
+
+.roomElements {
+	vertical-align: middle;
+}
+
+.room:first-child {
+	border-top: 0px;
+}
+
+.roomControls {
+	float: right;
+	padding-top: 5px;
+}
+
+/* Test für selectOneMenu */
+td .ui-selectonemenu {
+    vertical-align: top;
+}
+
+/*td .ui-selectonemenu {
+    display: block;
+}*/
+
+.twoColumnLeft {
+	display: inline-block;
+	padding-left: 25px;
+	padding-right: 25px;
+	width: 33%;
+	text-align: justify;
+	vertical-align: top;
+}
+
+.twoColumnRight {
+	display: inline-block;
+	padding-left: 25px;
+	padding-right: 25px;
+	width: 33%;
+	text-align: justify;
+	vertical-align: top;
+}
+
+.leftMenu {
+	position: fixed;
+	width: 172px;
+	top: 150px;
+}
+
+.menuOption {
+	margin-top: 15px;
+	margin-bottom: 15px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	font-size: 1.2em;
+}
+
+.leftMenu .menuOption {
+	width: 152px;
+	padding-left: 5px;
+	padding-right: 15px;
+	border-right: solid 7px #005292;
+}
+
+.priceColumn {
+	width: 25px;
+	text-align: center;
+}
+
+.articleIdColumn {
+	width: 25px;
+	text-align: center;
+}
+
+.IntakeRoom {
+	border-left: 4px solid #E0EBFF;
+}
+
+.OutletRoom {
+	border-left: 4px solid #EBCCCC;
+}
+
+.FlowRoom {
+	border-left: 4px solid grey;
+}
+
+.areaCalculator {
+	position: absolute;
+	z-index: 10000;
+	background-color: white;
+	border: 1px solid black;
+	box-shadow: rgba(0, 0, 0, 0.8) 0px 5px 10px 0px;
+}
+

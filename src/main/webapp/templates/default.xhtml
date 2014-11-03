@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:tk="http://bigdata.steinbauer.tk.jku.at/tags">
+
+<f:view contentType="text/html">
+	<h:head>
+		<!--[if IE]>
+			<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<![endif]-->
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+		<link rel="stylesheet" type="text/css" href="css/styles.css" />
+		<script type="text/javascript" src="lib/js/highcharts.js"></script>
+		<script type="text/javascript" src="lib/js/table-tools.js"></script>
+		<script type="text/javascript" src="lib/js/busyindicator.js"></script>
+		<ui:insert name="javascript"><!-- No additional JavaScript loaded --></ui:insert>
+		<title>Big Data Demo App</title>
+	</h:head>
+	<h:body>
+		<h:form>
+			 <p:growl id="growl" showDetail="true" sticky="true" severity="info, warn, error, fatal" widgetVar="g" /> 
+		</h:form>
+		<div id="wrapper">
+			<div id="header">
+				<h:form id="menuForm">
+				</h:form>
+			</div>
+			
+			<div id="main">
+				<h:form id="mainForm">
+					<div class="content">
+						<div class="con">
+							<ui:insert name="content">
+								Warning there is no default Content here! Probably an error with the usage of the templates.
+							</ui:insert>
+						</div>
+					</div>
+					<div class="controls">
+						<ui:insert name="controls">
+								
+						</ui:insert>
+					</div>
+				</h:form>
+			</div>
+			
+			<div id="footer">
+				<h:form id="footerForm">
+					<h:commandLink onclick="goUrl('imprint-flow.do'); return false;">
+						<h:outputText value="#{messages['copyright']}" />
+					</h:commandLink>
+				</h:form>
+			</div>
+			
+			<div id="dialogs">
+				<h:form id="dlgForm">
+					<ui:insert name="dialogs">
+					</ui:insert>
+				</h:form>
+			</div>
+		</div>
+		<div class="busyindicator">
+			<img class="progress" alt="loading ..." src="images/busy/ajax_loader_metal_300.gif" />
+			<div class="message"><h:outputText value="#{messages['loading']}"/></div>
+		</div>
+	</h:body>
+</f:view>
+</html>

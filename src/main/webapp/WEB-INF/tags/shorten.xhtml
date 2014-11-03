@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:tk="http://bigdata.steinbauer.tk.jku.at/tags">
+<h:body>
+	<ui:composition>
+		<ui:fragment rendered="#{not empty value and not empty maxlen}">
+			<ui:fragment rendered="#{value.length() gt maxlen}">
+				<h:outputText value="#{value.substring(0, maxlen-4)}" title="#{value}" styleClass="#{styleClass}" />
+				<h:outputText value=" ..." />
+			</ui:fragment>
+			<ui:fragment rendered="#{value.length() le maxlen}">
+				<h:outputText value="#{value}" styleClass="#{styleClass}" />
+			</ui:fragment>
+		</ui:fragment>
+		<ui:fragment rendered="#{empty value}">
+			<h:outputText value="Not value passed to og:shorten tag" />
+		</ui:fragment>
+		<ui:fragment rendered="#{empty maxlen}">
+			<h:outputText value="Not maxlen passed to og:shorten tag" />
+		</ui:fragment>
+	</ui:composition>
+</h:body>
+</html>
