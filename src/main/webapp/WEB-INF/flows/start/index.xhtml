@@ -12,7 +12,14 @@
 		<!-- Put inserts here -->
 
 		<ui:define name="content">
-			
+			<p:dataTable id="resultPaths" value="#{resultList}" var="path">
+				<p:column id="pathColumn" headerText="#{messages['resultSet']}" styleClass="clickableCell">
+					<h:commandLink action="loadResult">
+						<h:outputText value="#{path}" />
+						<f:setPropertyActionListener target="#{ctr.selectedPath}" value="#{path}" />
+					</h:commandLink>
+				</p:column>
+			</p:dataTable>
 		</ui:define>
 		
 		<ui:define name="controls">

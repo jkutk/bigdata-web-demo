@@ -3,12 +3,23 @@
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://www.springframework.org/schema/webflow
                           http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd"
-      start-state="startView">
+      start-state="loadResults">
       
-    <var name="multiAction" class="at.jku.tk.steinbauer.bigdata.web.controller.StartController" />
+    <var name="ctr" class="at.jku.tk.steinbauer.bigdata.web.controller.StartController" />
+    
+    <action-state id="loadResults">
+    	<evaluate expression="ctr.listResults" />
+    	<transition on="success" to="startView" />
+    </action-state>
       
     <view-state id="startView" view="start/index.xhtml">
+    	<transition on="loadResult" to="loadResult" />
     </view-state>
+    
+    <action-state id="loadResult">
+    	<evaluate expression="ctr.loadResult" />
+    	<transition on="success" to="viewResult" />
+    </action-state>
 
 </flow>
            
