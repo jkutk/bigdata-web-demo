@@ -1,9 +1,16 @@
 package at.jku.tk.steinbauer.bigdata.web.controller;
 
+import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.webflow.action.MultiAction;
 import org.springframework.webflow.execution.Event;
@@ -19,9 +26,13 @@ public class StartController extends MultiAction implements Serializable {
 	
 	public static final String F_RESULT_LIST = "resultList";
 	
+	public static final String F_HIGHCHARTS_DATA = "highchartsData";
+	
 	public static final long MAX_FILE_SIZE = 10 * 1024 * 1024; // 10 mb
 	
-	public static boolean sandbox = false;
+	public static final int MAX_LINES = 10;
+	
+	public static boolean localStubs = true;
 	
 	@Autowired
 	private HdfsAccess hdfsAccess;
@@ -29,28 +40,71 @@ public class StartController extends MultiAction implements Serializable {
 	private String selectedPath;
 	
 	public Event listResults(RequestContext context) throws IOException {
-		List<String> children = hdfsAccess.list(RESULT_PATH);
+		List<String> children;
+		if(localStubs) {
+			children = new ArrayList<>();
+			children.add("local-dummy-data");
+		}else{
+			children = hdfsAccess.list(RESULT_PATH);
+		}
 		context.getFlowScope().put(F_RESULT_LIST, children);
 		return success();
 	}
 	
 	public Event loadResult(RequestContext context) throws IOException {
 		String p = RESULT_PATH + "/" + selectedPath;
-		long fileSize = hdfsAccess.contentSize(p);
+		long fileSize = localStubs ? 1 : hdfsAccess.contentSize(p);
 		if(fileSize < MAX_FILE_SIZE) {
 			byte[] data;
-			if(sandbox) {
-				data = hdfsAccess.retrieveContent(p);
-			}else{
+			if(localStubs) {
 				data = loadDummy();
+			}else{
+				data = hdfsAccess.retrieveContent(p);
 			}
-			System.out.println(data.length);
+			String json = parseCsvToHighchartsJson(data);
+			context.getFlowScope().put(F_HIGHCHARTS_DATA, json);
+			return success();
 		}
 		return error();
 	}
 	
-	private byte[] loadDummy() {
-		return new byte[10];
+	private String parseCsvToHighchartsJson(byte[] csvData) throws IOException {
+		ByteArrayInputStream bin = new ByteArrayInputStream(csvData);
+		BufferedReader reader = new BufferedReader(new InputStreamReader(bin));
+		StringBuffer dataBuffer = new StringBuffer();
+		StringBuffer labelBuffer = new StringBuffer();
+		dataBuffer.append("[");
+		labelBuffer.append("[");
+		String line;
+		int count = 0;
+		while((line = reader.readLine()) != null && count <= MAX_LINES) {
+			if(dataBuffer.length() > 1) {
+				dataBuffer.append(",");
+				labelBuffer.append(",");
+			}
+			String[] csvLine = line.split("\\t");
+			if(!"undefined".equals(csvLine[1])) {
+				dataBuffer.append("['");
+				dataBuffer.append(csvLine[1]);
+				dataBuffer.append("',");
+				dataBuffer.append(csvLine[0]);
+				dataBuffer.append("]");
+				labelBuffer.append("'");
+				labelBuffer.append(csvLine[1]);
+				labelBuffer.append("'");
+				count ++;
+			}
+		}
+		dataBuffer.append("]");
+		labelBuffer.append("]");
+		return "{chartData: " + dataBuffer.toString() + ", labels: " + labelBuffer.toString() + "}";
+	}
+	
+	private byte[] loadDummy() throws IOException {
+		InputStream inputStream = StartController.class.getResourceAsStream("/dummy.csv");
+		ByteArrayOutputStream bout = new ByteArrayOutputStream();
+		IOUtils.copy(inputStream, bout);
+		return bout.toByteArray();
 	}
 
 	public String getSelectedPath() {

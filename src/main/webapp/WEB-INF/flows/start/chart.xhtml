@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:og="http://bigdata.steinbauer.tk.jku.at/tags">
+<h:body>
+
+	<ui:composition template="/templates/default.xhtml">
+		<!-- Put inserts here -->
+		
+		<ui:define name="javascript">
+			<script type="text/javascript">
+				var dataObject = #{highchartsData};
+				$(document).ready(function() {
+					var trafficChart = new Highcharts.Chart({
+						chart: {
+							type: 'column' ,
+							renderTo: 'chartContentArea'
+						},
+						title: { text: 'campus traffic sources' }, 
+						subtitle: { text: 'Source: indiana.edu click dataset' },
+						credits: { enabled: false },
+						yAxis: { title: {text: 'Num of occurences in from header'} },
+						xAxis: { 
+							categories: dataObject.labels,
+							labels: { rotation: 75, align: 'left' }
+						},
+						series: [{
+							name: 'from',
+							data: dataObject.chartData
+						}]
+					});
+				});
+			</script>
+		</ui:define>
+
+		<ui:define name="content">
+			<div id="chartContentArea">
+				<h:outputText value="#{messages['chartLoading']}" />
+			</div>
+		</ui:define>
+		
+		<ui:define name="controls">
+			<p:commandButton id="backButton" action="back" value="#{messages['back']}" />
+		</ui:define>
+		
+		<ui:define name="dialogs">
+		</ui:define>
+
+	</ui:composition>
+
+</h:body>
+
+</html>

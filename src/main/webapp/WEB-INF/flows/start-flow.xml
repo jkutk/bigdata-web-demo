@@ -20,6 +20,10 @@
     	<evaluate expression="ctr.loadResult" />
     	<transition on="success" to="viewResult" />
     </action-state>
+    
+    <view-state id="viewResult" view="start/chart.xhtml">
+    	<transition on="back" to="loadResults" />
+    </view-state>
 
 </flow>
            
