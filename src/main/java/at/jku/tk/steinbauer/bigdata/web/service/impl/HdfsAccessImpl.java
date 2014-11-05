@@ -31,7 +31,7 @@ public class HdfsAccessImpl implements Serializable, HdfsAccess {
 	private Configuration getConfiguration() {
 		if(configuration == null) {
 			configuration = new Configuration();
-			configuration.set("fs.defaultFS", "hdfs://127.0.0.1");
+			configuration.set("fs.defaultFS", "hdfs://sandbox");
 		}
 		return configuration;
 	}

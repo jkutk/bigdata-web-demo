@@ -12,6 +12,7 @@ import java.util.List;
 
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.webflow.action.MultiAction;
 import org.springframework.webflow.execution.Event;
 import org.springframework.webflow.execution.RequestContext;
@@ -22,7 +23,7 @@ public class StartController extends MultiAction implements Serializable {
 
 	private static final long serialVersionUID = -2637651955332466338L;
 	
-	public static final String RESULT_PATH = "hdfs://127.0.0.1/user/hue/out";
+	public static final String RESULT_PATH = "hdfs://sandbox/user/hue/out";
 	
 	public static final String F_RESULT_LIST = "resultList";
 	
@@ -32,7 +33,8 @@ public class StartController extends MultiAction implements Serializable {
 	
 	public static final int MAX_LINES = 10;
 	
-	public static boolean localStubs = true;
+	@Value("${useLocalStubs}")
+	public static String useLocalStubs = "false";
 	
 	@Autowired
 	private HdfsAccess hdfsAccess;
@@ -41,7 +43,7 @@ public class StartController extends MultiAction implements Serializable {
 	
 	public Event listResults(RequestContext context) throws IOException {
 		List<String> children;
-		if(localStubs) {
+		if("true".equals(useLocalStubs)) {
 			children = new ArrayList<>();
 			children.add("local-dummy-data");
 		}else{
@@ -53,10 +55,10 @@ public class StartController extends MultiAction implements Serializable {
 	
 	public Event loadResult(RequestContext context) throws IOException {
 		String p = RESULT_PATH + "/" + selectedPath;
-		long fileSize = localStubs ? 1 : hdfsAccess.contentSize(p);
+		long fileSize = "true".equals(useLocalStubs) ? 1 : hdfsAccess.contentSize(p);
 		if(fileSize < MAX_FILE_SIZE) {
 			byte[] data;
-			if(localStubs) {
+			if("true".equals(useLocalStubs)) {
 				data = loadDummy();
 			}else{
 				data = hdfsAccess.retrieveContent(p);
@@ -82,8 +84,9 @@ public class StartController extends MultiAction implements Serializable {
 				dataBuffer.append(",");
 				labelBuffer.append(",");
 			}
-			String[] csvLine = line.split("\\t");
-			if(!"undefined".equals(csvLine[1])) {
+			line = line.replace('\001', ' '); // fix hive delimiters
+			String[] csvLine = line.split("\\s+");
+			if(csvLine.length > 1 && !"undefined".equals(csvLine[1])) {
 				dataBuffer.append("['");
 				dataBuffer.append(csvLine[1]);
 				dataBuffer.append("',");
@@ -101,7 +104,7 @@ public class StartController extends MultiAction implements Serializable {
 	}
 	
 	private byte[] loadDummy() throws IOException {
-		InputStream inputStream = StartController.class.getResourceAsStream("/dummy.csv");
+		InputStream inputStream = StartController.class.getResourceAsStream("/dummy2.csv");
 		ByteArrayOutputStream bout = new ByteArrayOutputStream();
 		IOUtils.copy(inputStream, bout);
 		return bout.toByteArray();

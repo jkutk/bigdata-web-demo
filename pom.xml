@@ -14,9 +14,11 @@
 		<org.slf4j-version>1.7.6</org.slf4j-version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<hadoop-version>2.4.0</hadoop-version>
 	</properties>
 
 	<build>
+	    <finalName>bddemo</finalName>
 		<plugins>
 			<!-- Make sure to compile Java 1.7 (used by Hortonworks) -->
 			<plugin>
@@ -299,19 +301,19 @@
 		<dependency>
 			<groupId>org.apache.hadoop</groupId>
 			<artifactId>hadoop-mapreduce-client-core</artifactId>
-			<version>2.5.1</version>
+			<version>${hadoop-version}</version>
 		</dependency>
 		<!-- Hadoop Common pulls in some useful helpers -->
 		<dependency>
 			<groupId>org.apache.hadoop</groupId>
 			<artifactId>hadoop-common</artifactId>
-			<version>2.5.1</version>
+			<version>${hadoop-version}</version>
 		</dependency>
 		<!-- Dependencies for FS access -->
 		<dependency>
 			<groupId>org.apache.hadoop</groupId>
 			<artifactId>hadoop-hdfs</artifactId>
-			<version>2.5.1</version>
+			<version>${hadoop-version}</version>
 		</dependency>
 	</dependencies>
 
